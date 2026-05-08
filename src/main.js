@@ -79,6 +79,10 @@ form.addEventListener('submit', async event => {
       showLoadMoreButton();
     } else {
       hideLoadMoreButton();
+      iziToast.info({
+        position: 'topRight',
+        message: "We're sorry, but you've reached the end of search results.",
+      });
     }
   } catch (error) {
     // catching internet problemts, server/API errors if any
@@ -97,6 +101,7 @@ loadMoreBtn.addEventListener('click', async () => {
   currentPage += 1; // increasing the number of page
 
   showLoader();
+  hideLoadMoreButton();
 
   try {
     const data = await getImagesByQuery(currentQuery, currentPage);
@@ -125,7 +130,7 @@ loadMoreBtn.addEventListener('click', async () => {
       return;
     }
     // otherwise keeping showing the loadMoreBtn
-    showLoadMoreButton();
+    showLoadMoreButton(); // re-showing the button if more pages remain to load
   } catch (error) {
     iziToast.error({
       position: 'topRight',
