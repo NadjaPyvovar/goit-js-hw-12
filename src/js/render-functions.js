@@ -3,6 +3,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
+const loadMoreBtn = document.querySelector('.load-btn');
 
 const lightbox = new SimpleLightbox('.gallery a', {
   //"a" tag a inside ul class="gallery" (meaning "apply lightbox to all links inside gallery")
@@ -40,9 +41,7 @@ export function createGallery(images) {
       <p><b>Comments</b><span>${comments}</span></p>
       <p><b>Downloads</b><span>${downloads}</span></p>
      </div>
-    </li>
-  
-  `;
+    </li>  `;
       }
     )
     .join('');
@@ -66,4 +65,13 @@ export function showLoader() {
 // hiding spinner after the request
 export function hideLoader() {
   loader.classList.remove('is-visible');
+}
+
+// adding showLoadMoreButton():
+export function showLoadMoreButton() {
+  loadMoreBtn.style.display = 'block';
+}
+
+export function hideLoadMoreButton() {
+  loadMoreBtn.style.display = 'none';
 }
